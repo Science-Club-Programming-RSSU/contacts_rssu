@@ -54,7 +54,7 @@ namespace contacts_rssu
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Contact}/{action=Index}/{id?}");
             });
         }
     }
