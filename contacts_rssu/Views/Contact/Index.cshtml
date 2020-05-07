@@ -5,10 +5,21 @@
 }
 
 <h1>Список контактов</h1>
-
-<p>
-    <a asp-action="Create">Создать контакт</a>
-</p>
+<form method="get">
+    <div class="form-inline form-group">
+        <div>
+            <label class="control-label">Имя: </label>
+            <input name="name" class="form-control" />
+        </div>
+        <div>
+            <label class="control-label">Почта: </label>
+            <input name="name" class="form-control" />
+        </div>
+        <div>
+            <input type="submit" value="Поиск" class="btn btn-default" />
+        </div>
+    </div>
+</form>
 <table class="table">
     <thead>
         <tr>
@@ -37,8 +48,8 @@
                 @Html.DisplayFor(modelItem => item.Email)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Редактировать</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                <a asp-action="Edit" asp-route-id="@item.Id"><i class="fa fa-marker fa-lg"></i></a> 
+                <a asp-action="Delete" asp-route-id="@item.Id"><i class="fa fa-trash-alt fa-lg"></i></a>
             </td>
         </tr>
 }

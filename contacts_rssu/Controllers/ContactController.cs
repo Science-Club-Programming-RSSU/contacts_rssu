@@ -18,9 +18,21 @@ namespace contacts_rssu.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index(string name, string email)
         {
-            return View(await _context.Contacts.ToListAsync());
+            IQueryable<Contact> contacts = _context.Contacts;
+
+            if (!String.IsNullOrEmpty(name))
+            {
+                contacts = contacts.Where(c => c.Name == name);
+            }
+
+            if (!String.IsNullOrEmpty(email))
+            {
+                contacts = contacts.Where(p => p.Name.Contains(email));
+            }
+
+            return View(contacts);
         }
 
         [HttpGet]
