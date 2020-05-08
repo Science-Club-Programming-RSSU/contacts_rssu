@@ -6,30 +6,36 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using contacts_rssu.Models;
+using Castle.Core.Logging;
+using Microsoft.Extensions.Logging;
 
 namespace contacts_rssu.Controllers
 {
     public class ContactController : Controller
     {
         private readonly ContactContext _context;
+        private readonly ILogger<ContactController> _logger;
 
-        public ContactController(ContactContext context)
+        public ContactController(ILogger<ContactController> logger, ContactContext context)
         {
             _context = context;
+            _logger = logger;
         }
 
-        public IActionResult Index(string name, string email)
+        public IActionResult Index(string name, string email) // Возможно стоит сделать partial view / component view view 
         {
             IQueryable<Contact> contacts = _context.Contacts;
 
             if (!String.IsNullOrEmpty(name))
             {
-                contacts = contacts.Where(c => c.Name == name);
+                _logger.LogInformation("Зашли в if(!String.IsNullOrEmpty(name))");
+                contacts = contacts.Where(c => c.Name.Contains(name));
             }
 
             if (!String.IsNullOrEmpty(email))
             {
-                contacts = contacts.Where(p => p.Name.Contains(email));
+                _logger.LogInformation("Зашли в if(!String.IsNullOrEmpty(email))");
+                contacts = contacts.Where(p => p.Email.Contains(email));
             }
 
             return View(contacts);

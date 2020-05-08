@@ -1,0 +1,22 @@
+﻿<h1>Поиск</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <form asp-action="Index" asp-controller="Contact" method="post">
+                <th>
+                    <label class="control-label">Имя </label>
+                    <input name="name" class="form-control" />
+                </th>
+                <th>
+                    <label class="control-label">Почта </label>
+                    <input name="email" class="form-control" />
+                </th>
+                <th>
+                    <button class="btn btn-success" type="submit">Поиск</button>
+                    <button class="btn btn-info" type="submit" asp-route-name="" asp-route-email="">Сброс</button>
+                </th>
+                <th></th>
+            </form>
+        </tr>
+    </thead>
+</table>
