@@ -27,6 +27,7 @@ namespace contacts_rssu.Models
         [StringLength(30, MinimumLength = 6, ErrorMessage = "Длина поля \"Почта\" должна быть от 6 до 30 символов")]
         [Display(Name = "Почта")]
         [Required(ErrorMessage = "Полe \"Почта\" должно быть заполнено")]
+        [RegularExpression(@"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}", ErrorMessage = "Некорректный адрес")]
         public string Email { get; set; }
     }
 }

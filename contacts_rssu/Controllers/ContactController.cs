@@ -41,6 +41,17 @@ namespace contacts_rssu.Controllers
             return View(contacts);
         }
 
+        public IActionResult Delete(int id)
+        {
+            _logger.LogInformation("Зашли в метод Delete"); //error log
+
+            var contact = _context.Contacts.Find(id);
+            _context.Contacts.Remove(contact);
+            _context.SaveChanges();
+
+            return RedirectToAction(nameof(Index));
+        }
+
         [HttpGet]
         public IActionResult Create()
         {
